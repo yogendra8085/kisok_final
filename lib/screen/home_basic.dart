@@ -46,15 +46,15 @@ class _HomeBasicState extends State<HomeBasic> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("branchEn", (homeBasicModel.data?.branchNameEn).toString());
     prefs.setString("branchAr", (homeBasicModel.data?.branchNameAr).toString());
-    if (controller.videourl != "null") {
-      videoPlayerController = VideoPlayerController.network(
-        controller.videourl.value,
-      );
-      await videoPlayerController?.initialize().then((value) {
-        videoPlayerController?.play();
-        videoPlayerController?.setLooping(true);
-      });
-    }
+    // if (controller.videourl != "null") {
+    //   videoPlayerController = VideoPlayerController.network(
+    //     controller.videourl.value,
+    //   );
+    //   await videoPlayerController?.initialize().then((value) {
+    //     videoPlayerController?.play();
+    //     videoPlayerController?.setLooping(true);
+    //   });
+    // }
 
     print(controller.color1.value);
 

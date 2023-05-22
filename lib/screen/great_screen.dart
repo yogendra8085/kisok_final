@@ -33,19 +33,19 @@ class _GreatScreenState extends State<GreatScreen> {
     isloading = true;
 
     // appSettingModel = await controller.getsetting();
-    if (controller.videourl != "null") {
-      videoPlayerController = VideoPlayerController.network(
-        controller.videourl.value,
-      );
-      await videoPlayerController?.initialize().then((value) {
-        videoPlayerController?.play();
-        videoPlayerController?.setLooping(true);
-      });
-    }
+    // if (controller.videourl != "null") {
+    //   videoPlayerController = VideoPlayerController.network(
+    //     controller.videourl.value,
+    //   );
+    //   await videoPlayerController?.initialize().then((value) {
+    //     videoPlayerController?.play();
+    //     videoPlayerController?.setLooping(true);
+    //   });
+    // }
 
     print(controller.color1.value);
     isloading = false;
-    setState(() {});
+    //setState(() {});
   }
 
   @override

@@ -40,17 +40,17 @@ class _GetlineState extends State<Getline> {
   getdata() async {
     isloading = true;
     // appSettingModel = await controller.getsetting();
-    if (controller.videourl != "null") {
-      videoPlayerController = VideoPlayerController.network(
-        controller.videourl.value,
-      );
-      await videoPlayerController?.initialize().then((value) {
-        videoPlayerController?.play();
-        videoPlayerController?.setLooping(true);
-      });
-    }
+    // if (controller.videourl != "null") {
+    //   videoPlayerController = VideoPlayerController.network(
+    //     controller.videourl.value,
+    //   );
+    //   await videoPlayerController?.initialize().then((value) {
+    //     videoPlayerController?.play();
+    //     videoPlayerController?.setLooping(true);
+    //   });
+    // }
     isloading = false;
-    setState(() {});
+  //  setState(() {});
   }
 
   @override

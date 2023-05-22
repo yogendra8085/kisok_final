@@ -73,13 +73,14 @@ class GetSettingController extends GetxController {
         videourl.value =
             (appSettingModel.data?[0].videoId).toString() ?? "null";
         type.value = (appSettingModel.data?[0].type).toString() ?? "null";
-        if (videourl != "null" && type.value == "video") {
+        if (videourl != "null" && (appSettingModel.data?[0].type) == "video") {
           videoPlayerController = VideoPlayerController.network(
             videourl.value,
           );
           await videoPlayerController?.initialize().then((value) {
             videoPlayerController?.play();
             videoPlayerController?.setLooping(true);
+
           });
         }
 

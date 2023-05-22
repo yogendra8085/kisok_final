@@ -35,19 +35,19 @@ class _CheckYourTurnResultState extends State<CheckYourTurnResult> {
   VideoPlayerController? videoPlayerController;
   bool isloading = true;
   getdata() async {
-    isloading = true;
-    // appSettingModel = await controller.getsetting();
-    if (controller.videourl != "null") {
-      videoPlayerController = VideoPlayerController.network(
-        controller.videourl.value,
-      );
-      await videoPlayerController?.initialize().then((value) {
-        videoPlayerController?.play();
-        videoPlayerController?.setLooping(true);
-      });
-    }
-    isloading = false;
-    setState(() {});
+    // isloading = true;
+    // // appSettingModel = await controller.getsetting();
+    // // if (controller.videourl != "null") {
+    // //   videoPlayerController = VideoPlayerController.network(
+    // //     controller.videourl.value,
+    // //   );
+    // //   await videoPlayerController?.initialize().then((value) {
+    // //     videoPlayerController?.play();
+    // //     videoPlayerController?.setLooping(true);
+    // //   });
+    // // }
+    // isloading = false;
+   // setState(() {});
   }
 
   @override
