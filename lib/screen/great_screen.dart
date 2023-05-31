@@ -9,8 +9,12 @@ import 'package:flutter_application_1/screen/select_party.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
+import '../controller/check_controller.dart';
+import '../controller/check_line_controller.dart';
 import '../controller/get_setting_controller.dart';
+import '../model/addcustomer_details_model.dart';
 import '../model/app_setting_model.dart';
+import '../model/check_line_details.dart';
 import '../utils/const/text_style.dart';
 import '../utils/reuseable_step.dart';
 import '../utils/reuseble_next_button.dart';
@@ -18,7 +22,9 @@ import '../utils/reuseble_not_selected_step.dart';
 import 'home_basic.dart';
 
 class GreatScreen extends StatefulWidget {
-  const GreatScreen({super.key});
+
+  AddCustomerDetailsModel addCustomerDetailsModel;
+   GreatScreen({required this.addCustomerDetailsModel});
 
   @override
   State<GreatScreen> createState() => _GreatScreenState();
@@ -29,9 +35,11 @@ class _GreatScreenState extends State<GreatScreen> {
   AppSettingModel appSettingModel = AppSettingModel();
   final controller = Get.put(GetSettingController());
   VideoPlayerController? videoPlayerController;
+  CheckLineDetailsModel checkLineDetailsModel=CheckLineDetailsModel();
   getdata() async {
     isloading = true;
-
+checkLineDetailsModel = await CheckLineController().getdataturn("33",
+ "${widget.addCustomerDetailsModel.clientdetails?.clientPhone}", context, "${widget.addCustomerDetailsModel.countrydetails?.countryCode}", );
     // appSettingModel = await controller.getsetting();
     // if (controller.videourl != "null") {
     //   videoPlayerController = VideoPlayerController.network(
@@ -45,7 +53,7 @@ class _GreatScreenState extends State<GreatScreen> {
 
     print(controller.color1.value);
     isloading = false;
-    //setState(() {});
+    setState(() {});
   }
 
   @override
@@ -66,7 +74,8 @@ class _GreatScreenState extends State<GreatScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: GetBuilder<GetSettingController>(
+            body:isloading==false?
+             GetBuilder<GetSettingController>(
                 init: GetSettingController(),
                 builder: (newcontroller) {
                   return Container(
@@ -200,7 +209,7 @@ class _GreatScreenState extends State<GreatScreen> {
                                                           .b20stylew,
                                                     ),
                                                     Text(
-                                                      "16",
+                                                      "${checkLineDetailsModel.turn}",
                                                       style: TextStyleConst
                                                           .b80stylew,
                                                     ),
@@ -224,7 +233,9 @@ class _GreatScreenState extends State<GreatScreen> {
                           ),
                         ],
                       ));
-                })));
+                }):Center(child: CircularProgressIndicator(),)
+                )
+                );
     ;
   }
 }

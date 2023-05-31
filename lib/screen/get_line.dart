@@ -7,13 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_application_1/screen/select_area.dart';
+import 'package:flutter_application_1/screen/select_chair.dart';
 import 'package:flutter_application_1/utils/reuseble_textfield.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:video_player/video_player.dart';
 
+import '../controller/check_controller.dart';
 import '../controller/get_setting_controller.dart';
+import '../model/addcustomer_details_model.dart';
 import '../model/app_setting_model.dart';
+import '../model/get_data_model.dart';
 import '../utils/const/text_style.dart';
 import '../utils/reuseable_step.dart';
 import '../utils/reuseable_textfield1.dart';
@@ -30,13 +34,15 @@ class Getline extends StatefulWidget {
 }
 
 class _GetlineState extends State<Getline> {
-  TextEditingController name = TextEditingController();
+  TextEditingController ?name;
   TextEditingController phone = TextEditingController();
-  String gender = "male";
+  String ?gender="other";
+  String? countrycode="+965";
   AppSettingModel appSettingModel = AppSettingModel();
   final controller = Get.put(GetSettingController());
   VideoPlayerController? videoPlayerController;
   bool isloading = true;
+  GetDataModel getDataModel=GetDataModel();
   getdata() async {
     isloading = true;
     // appSettingModel = await controller.getsetting();
@@ -50,7 +56,7 @@ class _GetlineState extends State<Getline> {
     //   });
     // }
     isloading = false;
-  //  setState(() {});
+    //  setState(() {});
   }
 
   @override
@@ -66,15 +72,34 @@ class _GetlineState extends State<Getline> {
     videoPlayerController?.dispose();
     super.dispose();
   }
-
-  sumbit() {
-    Get.to(() => GreatScreen());
+   AddCustomerDetailsModel addCustomerDetailsModel=AddCustomerDetailsModel();
+  sumbit() async {
+    print(gender!+"gender");
+    if(phone.text.isEmpty||(name?.text).toString()=="No data"||(gender).toString()=="other"||(name?.text).toString().isEmpty){
+             Get.showSnackbar(
+          GetSnackBar(
+            title: "Failed",
+            message:"All Field Is Required" ,
+            duration: const Duration(seconds: 3),
+          ),
+        );
+    }
+    else{
+ addCustomerDetailsModel= await  CheckController().adddata(countrycode.toString(), phone.text, (name?.text).toString(),gender=="male"?"0":"1");
+   setState(() {
+     
+   });
+    }
+  
+   
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+
         child: Scaffold(
+            resizeToAvoidBottomInset: false,
             body: GetBuilder<GetSettingController>(
                 init: GetSettingController(),
                 builder: (newcontroller) {
@@ -229,71 +254,119 @@ class _GetlineState extends State<Getline> {
                                                         ),
                                                         Row(
                                                           children: [
-                                                            Expanded(
-                                                              flex: 3,
-                                                              child: Container(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            5,
-                                                                        vertical:
-                                                                            3),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                12),
-                                                                        border:
-                                                                            Border.all(
-                                                                          color:
-                                                                              Color(0x40ffffff),
-                                                                        )),
-                                                                child:
-                                                                    CountryCodePicker(
-                                                                  flagWidth: 80,
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    // countryname =
-                                                                    //     value.code.toString();
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                  // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
-                                                                  initialSelection:
-                                                                      'KW',
-                                                                  favorite: [
-                                                                    '+965',
-                                                                    'KW'
-                                                                  ],
-                                                                  // optional. Shows only country name and flag
-                                                                  showCountryOnly:
-                                                                      false,
-                                                                  // optional. Shows only country name and flag when popup is closed.
-                                                                  showOnlyCountryWhenClosed:
-                                                                      false,
-                                                                  textStyle: TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          20),
-                                                                  // optional. aligns the flag and the Text left
-                                                                  alignLeft:
-                                                                      false,
-                                                                ),
-                                                              ),
-                                                            ),
+                                                            // Expanded(
+                                                            //   flex: 3,
+                                                            //   child: Container(
+                                                            //     padding: EdgeInsets
+                                                            //         .symmetric(
+                                                            //             horizontal:
+                                                            //                 5,
+                                                            //             vertical:
+                                                            //                 3),
+                                                            //     decoration:
+                                                            //         BoxDecoration(
+                                                            //             borderRadius:
+                                                            //                 BorderRadius.circular(
+                                                            //                     12),
+                                                            //             border:
+                                                            //                 Border.all(
+                                                            //               color:
+                                                            //                   Color(0x40ffffff),
+                                                            //             )),
+                                                            //     child:
+
+                                                            //   ),
+                                                            // ),
                                                             SizedBox(
                                                               width: 10,
                                                             ),
                                                             Expanded(
                                                               flex: 8,
-                                                              child:
-                                                                  ReuseableTextfield1(
-                                                                hinttext:
-                                                                    "phone".tr,
+                                                              child: TextField(
+                                                                onChanged: (value) async {
+                                                                  if(value.length>3){
+                                                                    print("call api");
+                                                                  
+                                                                getDataModel= await CheckController().getdata(countrycode!, value);
+                                                                name=TextEditingController(text:"${getDataModel.listOfData?.clientName ?? 'No data'}",
+                                                               
+                                                               
+                                                                );
+                                                                  
+                                                                
+                                                                  }
+                                                                  setState(() {
+                                                                  
+                                                                });
+                                                                 print(getDataModel.listOfData);
+                                                                },
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .phone,
+                                                                readOnly: false,
                                                                 controller:
                                                                     phone,
+                                                                style: TextStyleConst
+                                                                    .h20bstylew,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                decoration: InputDecoration(
+                                                                    hintText: "phone".tr,
+                                                                    hintStyle: TextStyleConst.h20bstylew,
+                                                                    prefixIcon: CountryCodePicker(
+                                                                      flagWidth:
+                                                                          80,
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        countrycode =
+                                                                            value.dialCode.toString();
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                      // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                                                                      initialSelection:
+                                                                          'KW',
+                                                                      favorite: [
+                                                                        '+965',
+                                                                        'KW'
+                                                                      ],
+                                                                      // optional. Shows only country name and flag
+                                                                      showCountryOnly:
+                                                                          false,
+                                                                      // optional. Shows only country name and flag when popup is closed.
+                                                                      showOnlyCountryWhenClosed:
+                                                                          false,
+                                                                      textStyle: TextStyle(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          fontSize:
+                                                                              20),
+                                                                      // optional. aligns the flag and the Text left
+                                                                      alignLeft:
+                                                                          false,
+                                                                    ),
+                                                                    enabledBorder: OutlineInputBorder(
+                                                                        borderRadius: BorderRadius.circular(12),
+                                                                        borderSide: BorderSide(
+                                                                          color:
+                                                                              const Color(0x40ffffff),
+                                                                        )),
+                                                                    focusedBorder: OutlineInputBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12),
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                              color: const Color(0x40ffffff)),
+                                                                    )),
                                                               ),
+                                                              //     ReuseableTextfield1(
+                                                              //   hinttext:
+                                                              //       "phone".tr,
+                                                              //   controller:
+                                                              //       phone,
+                                                              // ),
                                                             ),
                                                           ],
                                                         ),
@@ -301,15 +374,15 @@ class _GetlineState extends State<Getline> {
                                                             hinttext:
                                                                 "typeyourname"
                                                                     .tr,
-                                                            controller: name),
+                                                            controller: name??TextEditingController()),
                                                         Row(
                                                           children: [
                                                             Expanded(
                                                               child: Row(
                                                                 children: [
                                                                   Radio(
-                                                                    value:
-                                                                        'male',
+                                                                    value:"male",
+                                                                    
                                                                     groupValue:
                                                                         gender,
                                                                     activeColor:
@@ -319,6 +392,7 @@ class _GetlineState extends State<Getline> {
                                                                         ((value) {
                                                                       setState(
                                                                           () {});
+                                                                          
                                                                       gender = value
                                                                           .toString();
                                                                     }),
@@ -340,7 +414,7 @@ class _GetlineState extends State<Getline> {
                                                                 children: [
                                                                   Radio(
                                                                     value:
-                                                                        'female',
+                                                                  "female",
                                                                     groupValue:
                                                                         gender,
                                                                     activeColor:
@@ -412,24 +486,24 @@ class _GetlineState extends State<Getline> {
                                                         ),
                                                         Spacer(),
                                                         Expanded(
-                                                          child: ReuseableStep(
+                                                          child: ReuseableStepnotselected(
                                                               text:
                                                                   "chairs".tr +
                                                                       " ${5}",
                                                               index: "1"),
                                                         ),
                                                         Expanded(
-                                                          child: ReuseableStep(
+                                                          child: ReuseableStepnotselected(
                                                               text: "area".tr,
                                                               index: "2"),
                                                         ),
                                                         Expanded(
-                                                          child: ReuseableStep(
+                                                          child: ReuseableStepnotselected(
                                                               text: "party".tr,
                                                               index: "2"),
                                                         ),
                                                         Expanded(
-                                                          child: ReuseableStep(
+                                                          child: ReuseableStepnotselected(
                                                               text: "seatedarea"
                                                                   .tr,
                                                               index: "4"),

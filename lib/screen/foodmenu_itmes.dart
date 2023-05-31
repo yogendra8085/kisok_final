@@ -169,7 +169,7 @@ class _FoodMenuItmesState extends State<FoodMenuItmes> {
                                                                     ? "${foodMenuItemsModel.data?[index].detailsEn}"
                                                                     : "${foodMenuItemsModel.data?[index].detailsAr}",
                                                                 imageurl:
-                                                                    "${foodMenuItemsModel.data?[index].image}",
+                                                                    "https://cdn.requeue.net/media/media/"+"${foodMenuItemsModel.data?[index].image}",
                                                                 price:
                                                                     "${foodMenuItemsModel.data?[index].price}",
                                                                 title:
@@ -177,39 +177,47 @@ class _FoodMenuItmesState extends State<FoodMenuItmes> {
                                                               ));
                                                     },
                                                     child: BlurryContainer(
-                                                      blur: 24,
-                                                      color: Colors.transparent,
+                                                      blur: 10,
+                                                      color: newcontroller.colormincontainer ==
+                                                      null
+                                                  ? Color(0xff352073)
+                                                  : newcontroller
+                                                      .colormincontainer.value
+                                                      .withOpacity(.5),
                                                       child: Column(
                                                         children: [
                                                           SizedBox(
                                                             height: 5,
                                                           ),
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        13),
-                                                            child:
-                                                                // Image.network(
-                                                                //   "${foodMenuItemsModel.data?[index].image}",
-                                                                //   fit: BoxFit.cover,
-                                                                // ),
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  "${foodMenuItemsModel.data?[index].image}",
-                                                              placeholder:
-                                                                  (context,
-                                                                          url) =>
-                                                                      Image
-                                                                          .asset(
-                                                                "assets/images/placeholeder.png",
-                                                                scale: 4,
+                                                          Expanded(
+                                                            flex: 6,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          13),
+                                                              child:
+                                                                  // Image.network(
+                                                                  //   "${foodMenuItemsModel.data?[index].image}",
+                                                                  //   fit: BoxFit.cover,
+                                                                  // ),
+                                                                  CachedNetworkImage(
+                                                                imageUrl:
+                                                                   "https://cdn.requeue.net/media/media/"+"${foodMenuItemsModel.data?[index].image}",
+                                                                placeholder:
+                                                                    (context,
+                                                                            url) =>
+                                                                        Image
+                                                                            .asset(
+                                                                  "assets/images/placeholeder.png",
+                                                                  scale: 4,
+                                                                ),
+                                                                errorWidget: (context,
+                                                                        url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
                                                               ),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
                                                             ),
                                                           ),
                                                           Spacer(),
@@ -222,7 +230,7 @@ class _FoodMenuItmesState extends State<FoodMenuItmes> {
                                                               style:
                                                                   TextStyleConst
                                                                       .h16bstylew,
-                                                              // maxLines: 1,
+                                                               maxLines: 1,
                                                               overflow:
                                                                   TextOverflow
                                                                       .clip,

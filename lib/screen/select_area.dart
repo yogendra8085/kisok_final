@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 import '../controller/get_setting_controller.dart';
+import '../model/addcustomer_details_model.dart';
 import '../model/app_setting_model.dart';
 import '../utils/const/text_style.dart';
 import '../utils/reuseable_step.dart';
@@ -16,7 +17,9 @@ import '../utils/reuseble_not_selected_step.dart';
 import 'home_basic.dart';
 
 class SelectArea extends StatefulWidget {
-  const SelectArea({super.key});
+  String chaire;
+  AddCustomerDetailsModel addCustomerDetailsModel;
+   SelectArea({required this.chaire,required this.addCustomerDetailsModel});
 
   @override
   State<SelectArea> createState() => _SelectAreaState();
@@ -33,6 +36,7 @@ class _SelectAreaState extends State<SelectArea> {
   final controller = Get.put(GetSettingController());
   VideoPlayerController? videoPlayerController;
   bool isloading = true;
+  bool check=true;
   getdata() async {
     isloading = true;
     // appSettingModel = await controller.getsetting();
@@ -50,7 +54,20 @@ class _SelectAreaState extends State<SelectArea> {
   }
 
   sumbit() {
-    Get.to(() => SelectParty());
+    if(selectindex==-1){
+      check=false;
+      setState(() {
+        
+      });
+    }
+    else{
+       check=true;
+       setState(() {
+        
+      });
+ Get.to(() => SelectParty(area: list[selectindex],addCustomerDetailsModel: widget.addCustomerDetailsModel,chairs: widget.chaire,));
+    }
+   
   }
 
   @override
@@ -219,6 +236,13 @@ class _SelectAreaState extends State<SelectArea> {
                                                               .h20bstylew,
                                                         ),
                                                       ),
+                                                       check==false?  Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                        Text("Please select Area",style: TextStyle(fontSize: 15,color: Color(0xffEF5E82)),),
+                                                        SizedBox(width: 5,),
+                                                        Icon(Icons.error,color: Color(0xffEF5E82),),
+                                                      ],):SizedBox.shrink(),
                                                       Expanded(
                                                         flex: 8,
                                                         child: ListView.builder(
@@ -232,6 +256,7 @@ class _SelectAreaState extends State<SelectArea> {
                                                                   setState(() {
                                                                     selectindex =
                                                                         index;
+                                                                        check=true;
                                                                   });
                                                                 },
                                                                 child:

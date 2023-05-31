@@ -44,6 +44,7 @@ dependencies:
   cached_network_image: ^3.2.3
   wechat_assets_picker: ^8.4.3
   video_player: ^2.6.1
+  flutter_switch: ^0.3.2
   
 
 dev_dependencies:

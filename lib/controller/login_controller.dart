@@ -52,8 +52,8 @@ class LoginController {
         _dialog.hide();
         Get.showSnackbar(
           GetSnackBar(
-            title: loginModel.errorCode.toString(),
-            message: loginModel.message,
+            title: "Failed",
+            message: "invalid username and password",
             duration: const Duration(seconds: 3),
           ),
         );

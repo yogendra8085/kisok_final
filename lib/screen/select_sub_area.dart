@@ -10,17 +10,24 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:video_player/video_player.dart';
 
+import '../controller/add_que_cntroller.dart';
 import '../controller/get_setting_controller.dart';
+import '../model/addcustomer_details_model.dart';
 import '../model/app_setting_model.dart';
 import '../utils/const/text_style.dart';
 import '../utils/reuseable_step.dart';
 import '../utils/reuseble_next_button.dart';
 import '../utils/reuseble_not_selected_step.dart';
 import 'get_line.dart';
+import 'great_screen.dart';
 import 'home_basic.dart';
 
 class SelectSubArea extends StatefulWidget {
-  const SelectSubArea({super.key});
+   String party;
+   String area ;
+   String chairs;
+  AddCustomerDetailsModel addCustomerDetailsModel;
+   SelectSubArea({required this.party,required this.addCustomerDetailsModel,required this.area,required this.chairs});
 
   @override
   State<SelectSubArea> createState() => _SelectSubAreaState();
@@ -49,10 +56,26 @@ class _SelectSubAreaState extends State<SelectSubArea> {
 
     //setState(() {});
   }
-
-  sumbit() {
-    Get.to(() => Getline());
+bool check=true;
+  sumbit() async {
+    if(selectindex==-1){
+      check=false;
+      setState(() {
+        
+      });
+    }
+    else{
+       check=true;
+       setState(() {
+        
+      });
+await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countrydetails?.countryCode}", "${ widget.addCustomerDetailsModel.clientdetails?.clientPhone}",
+  "${ widget.addCustomerDetailsModel.clientdetails?.clientName}", "${ widget.addCustomerDetailsModel.clientdetails?.clientGender}", widget.chairs,
+   "${ widget.addCustomerDetailsModel.clientdetails?.clientId}", widget.area, context,widget.addCustomerDetailsModel);
+ //Get.to(() => GreatScreen(addCustomerDetailsModel: widget.addCustomerDetailsModel,));
   }
+    }
+   
 
   @override
   void initState() {
@@ -216,6 +239,13 @@ class _SelectSubAreaState extends State<SelectSubArea> {
                                                             .h20bstylew,
                                                       ),
                                                     ),
+                                                     check==false?  Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                        Text("Please select SubArea",style: TextStyle(fontSize: 15,color: Color(0xffEF5E82)),),
+                                                        SizedBox(width: 5,),
+                                                        Icon(Icons.error,color: Color(0xffEF5E82),),
+                                                      ],):SizedBox.shrink(),
                                                     Expanded(
                                                       flex: 8,
                                                       child: ListView.builder(
@@ -229,6 +259,7 @@ class _SelectSubAreaState extends State<SelectSubArea> {
                                                                 setState(() {
                                                                   selectindex =
                                                                       index;
+                                                                      check=true;
                                                                 });
                                                               },
                                                               child: Container(

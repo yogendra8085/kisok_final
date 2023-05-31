@@ -9,13 +9,25 @@ import 'package:flutter_application_1/utils/const/languge_change.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(new MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String savedLocale = prefs.getString('locale').toString();
+  Locale initialLocale;
+  
+  if (savedLocale != "null") {
+    List<String> localeParts = savedLocale.split('_');
+    initialLocale = Locale(localeParts[0], localeParts[1]);
+  } else {
+    initialLocale = Locale('en', 'US');
+  }
+   runApp( new  MyApp(initialLocale: initialLocale));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
+ final Locale initialLocale;
+  
+  MyApp({required this.initialLocale});
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -40,7 +52,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       translations: LocaleString(),
-      locale: Locale('en', 'US'),
+      locale:widget.initialLocale=="null"?Locale('en','en_US'):widget.initialLocale,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,

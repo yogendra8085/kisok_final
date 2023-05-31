@@ -29,7 +29,7 @@ class CheckLineController {
       "Authorization": "${prefs.getString("userToken")}"
     };
     Map<String, dynamic> body = {
-      'restid': int.parse(id).toInt(),
+      'restid': "33",
       'mobileNo': number,
       "countryCode": contrycode,
     };
@@ -69,4 +69,51 @@ class CheckLineController {
       );
     }
   }
+
+ getdataturn(String id, String number,BuildContext context,
+      String contrycode) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final headers = {
+      'Content-Type': 'application/json',
+      "Authorization": "${prefs.getString("userToken")}"
+    };
+    Map<String, dynamic> body = {
+      'restid': "33",
+      'mobileNo': number,
+      "countryCode": contrycode,
+    };
+    print(body);
+   // try {
+      final response =
+          await http.post(_checkline, headers: headers, body: jsonEncode(body));
+
+      var data = jsonDecode(response.body.toString());
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        checkLineDetailsModel = CheckLineDetailsModel.fromJson(data);
+        print("${checkLineDetailsModel.turn}"+"your tutn");
+     
+        return checkLineDetailsModel;
+      } else {
+        Get.showSnackbar(
+          GetSnackBar(
+            title: response.statusCode.toString(),
+            message: data["message"],
+            duration: const Duration(seconds: 3),
+          ),
+        );
+    //  }
+   // } catch (e) {
+     // print(e.toString());
+      // Get.showSnackbar(
+      //   GetSnackBar(
+      //     title: "Failed",
+      //     message: e.toString(),
+      //     duration: const Duration(seconds: 3),
+      //   ),
+      // );
+   // }
+  }
+      }
 }

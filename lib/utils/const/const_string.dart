@@ -7,4 +7,5 @@ class ConstString {
   static String foodmenu = "kiosk/foodManu";
   static String setting = "kiosk/setting/appSettings";
   static String getsetting = "kiosk/setting/getKioskSetting";
+  static String   addqueue = "kiosk/queue/createQueue";
 }

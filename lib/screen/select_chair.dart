@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:video_player/video_player.dart';
 
 import '../controller/get_setting_controller.dart';
+import '../model/addcustomer_details_model.dart';
 import '../model/app_setting_model.dart';
 import '../utils/const/text_style.dart';
 import '../utils/reuseable_step.dart';
@@ -17,7 +18,8 @@ import '../utils/reuseble_not_selected_step.dart';
 import 'home_basic.dart';
 
 class SelectChair extends StatefulWidget {
-  const SelectChair({super.key});
+  AddCustomerDetailsModel addCustomerDetailsModel;
+   SelectChair({required this.addCustomerDetailsModel});
 
   @override
   State<SelectChair> createState() => _SelectChairState();
@@ -46,9 +48,25 @@ class _SelectChairState extends State<SelectChair> {
 
   int selectindex = -1;
   int selectedCard = -1;
-
+   bool check=true;
   sumbit() {
-    Get.to(() => SelectArea());
+    print("selectcard"+selectedCard.toString());
+    if(selectedCard==-1){
+      check=false;
+        setState(() {
+          
+        });
+    }
+    else{
+      check=true;
+      setState(() {
+        
+      });
+ Get.to(() => SelectArea(
+      addCustomerDetailsModel: widget.addCustomerDetailsModel,chaire: (selectedCard+1).toString(),
+    ));
+    }
+   
   }
 
   @override
@@ -220,6 +238,13 @@ class _SelectChairState extends State<SelectChair> {
                                                               .h20bstylew,
                                                         ),
                                                       ),
+                                                   check==false?  Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                        Text("Please select Chairs",style: TextStyle(fontSize: 15,color: Color(0xffEF5E82)),),
+                                                        SizedBox(width: 5,),
+                                                        Icon(Icons.error,color: Color(0xffEF5E82),),
+                                                      ],):SizedBox.shrink(),
                                                       Expanded(
                                                         flex: 8,
                                                         child: GridView.count(
@@ -243,6 +268,7 @@ class _SelectChairState extends State<SelectChair> {
                                                                     // ontap of each card, set the defined int to the grid view index
                                                                     selectedCard =
                                                                         index;
+                                                                        check=true;
                                                                   });
                                                                 },
                                                                 child:

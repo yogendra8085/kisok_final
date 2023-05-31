@@ -13,8 +13,8 @@ class Loginbutton extends StatelessWidget {
     return InkWell(
       onTap: sumbit,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15),
-        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 15,horizontal: 100),
+        margin: EdgeInsets.symmetric(vertical: 15,),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment(0.0, -1.0),

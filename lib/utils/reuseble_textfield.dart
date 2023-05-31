@@ -20,6 +20,7 @@ class ReuseableTextfield extends StatelessWidget {
       style: TextStyleConst.l64stylew,
       textAlign: TextAlign.center,
       decoration: InputDecoration(
+        
           hintText: '${hinttext}',
           hintStyle: TextStyleConst.l64stylew,
           enabledBorder: OutlineInputBorder(

@@ -1,4 +1,5 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -166,10 +167,23 @@ class _FoodMenuDetailsState extends State<FoodMenuDetails> {
                                                 //     ?
                                                 Expanded(
                                                   flex: 3,
-                                                  child: Image.asset(
-                                                    "assets/images/placeholeder.png",
-                                                    scale: 3,
-                                                  ),
+                                                  child:  CachedNetworkImage(
+                                                                imageUrl:
+                                                                  widget.imageurl,
+                                                                placeholder:
+                                                                    (context,
+                                                                            url) =>
+                                                                        Image
+                                                                            .asset(
+                                                                  "assets/images/placeholeder.png",
+                                                                  scale: 4,
+                                                                ),
+                                                                errorWidget: (context,
+                                                                        url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
+                                                              ),
                                                 ),
                                                 // : Image.network(widget.imageurl),
                                                 Expanded(
@@ -186,7 +200,7 @@ class _FoodMenuDetailsState extends State<FoodMenuDetails> {
                                                       Expanded(
                                                         flex: 2,
                                                         child: Text(
-                                                          widget.price,
+                                                          widget.price+" KD",
                                                           style: TextStyleConst
                                                               .h24mstylew,
                                                         ),

@@ -18,6 +18,7 @@ import '../screen/check_your_turn.dart';
 import '../screen/customized_degin.dart';
 import '../screen/foodmenu_itmes.dart';
 import '../screen/get_line.dart';
+import '../screen/login_screen.dart';
 import '../screen/select_chair.dart';
 import 'const/text_style.dart';
 
@@ -56,13 +57,17 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
   }
 
   sumbit() async {
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+  
     if (Get.locale.toString() == "en_US") {
       var locale = Locale('ar', 'KW');
 
       Get.updateLocale(locale);
+      await prefs.setString('locale', locale.toString());
     } else {
       var locale = Locale('en', 'US');
       Get.updateLocale(locale);
+      await prefs.setString('locale', locale.toString());
     }
 
     print(
@@ -103,7 +108,7 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
                             sumbit: sumbit,
                           )),
                       Expanded(
-                        flex: 2,
+                        flex:2 ,
                         child: InkWell(
                             onTap: () {
                               Get.to(() => CustomizedDegin())?.then((value) {});
@@ -114,14 +119,29 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
                               size: 30,
                             )),
                       ),
+                       Expanded(
+                        flex: 2,
+                        child: InkWell(
+                            onTap: () async {
+                              final prefs = await SharedPreferences.getInstance();
+                              prefs.clear();
+                              Get.to(() => LoginScreen())?.then((value) {});
+                            },
+                            child: Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                              size: 30,
+                            )),
+                      ),
                     ],
                   ),
                   Spacer(),
                   Text(
                     Get.locale.toString() == "en_US"
-                        ? branchen.toString() ?? ""
-                        : branchar.toString() ?? "",
+                        ? branchen.toString()=="null"?"":branchen.toString()
+                        : branchar.toString()=="null"?"":branchar.toString(),
                     style: TextStyleConst.h33bstylew,
+                    maxLines: 1,
                   ),
                   Text(
                     "waitinglist".tr,
@@ -137,7 +157,7 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
                           if ((list[i]).toString().tr == "checkline".tr) {
                             Get.to(() => CheckYourTurn());
                           } else if ((list[i]).toString().tr == "getline".tr) {
-                            Get.to(() => SelectChair());
+                            Get.to(() => Getline());
                           } else if ((list[i]).toString().tr == "foodmenu".tr) {
                             Get.to(() => FoodMenuItmes());
                           }

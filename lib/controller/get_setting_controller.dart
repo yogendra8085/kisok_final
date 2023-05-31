@@ -53,7 +53,8 @@ class GetSettingController extends GetxController {
             ((appSettingModel.data?[0].colorCode).toString() ?? "");
 
         // Remove the square brackets and split the string
-        List<String> colorStrings =
+        if((appSettingModel.data?[0].colorCode).toString()!="null"&&type=="color"){
+ List<String> colorStrings =
             colorString.replaceAll('[', '').replaceAll(']', '').split(', ');
 
         // Convert the hexadecimal color values to Color objects
@@ -68,6 +69,8 @@ class GetSettingController extends GetxController {
         colormincontainer.value = colors[0];
         print(color2.value);
         print(colors[0]);
+        }
+       
         imageurl.value =
             (appSettingModel.data?[0].imageId).toString() ?? "null";
         videourl.value =

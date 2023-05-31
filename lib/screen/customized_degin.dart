@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +37,7 @@ class _CustomizedDeginState extends State<CustomizedDegin> {
     _controller?.dispose();
   }
 
-  Future<void> linearsumbit(Color linearfirst, Color linearsecond) async {
+ linearsumbit(Color linearfirst, Color linearsecond) async {
     final prefs = await SharedPreferences.getInstance();
     color1 = linearfirst;
     color2 = linearsecond;
@@ -44,14 +45,14 @@ class _CustomizedDeginState extends State<CustomizedDegin> {
     setState(() {});
   }
 
-  Future<void> singal(Color singalcolor) async {
+   singal(Color singalcolor) async {
     colormincontainer = singalcolor;
     final prefs = await SharedPreferences.getInstance();
 
     print("jdas");
     setState(() {});
   }
-
+bool status = false;
   final controller = Get.put(GetSettingController());
 
   @override
@@ -69,6 +70,9 @@ class _CustomizedDeginState extends State<CustomizedDegin> {
                 children: [
                   InkWell(
                     onTap: () {
+                      if(assets?.isNotEmpty??false){
+                            _controller?.dispose();
+                      }
                       Navigator.pop(context);
                     },
                     child: Row(
@@ -79,14 +83,14 @@ class _CustomizedDeginState extends State<CustomizedDegin> {
                           size: 30,
                         ),
                         Text(
-                          "BACK",
+                          "back".tr,
                           style:
                               TextStyle(fontSize: 24, color: Color(0xff4A4848)),
                         ),
                       ],
                     ),
                   ),
-                  Text("SETTING",
+                  Text("setting".tr,
                       style: TextStyle(fontSize: 24, color: Color(0xff4A4848))),
                   InkWell(
                     onTap: () async {
@@ -101,12 +105,12 @@ class _CustomizedDeginState extends State<CustomizedDegin> {
                       await AppSettingController().updatesetting(
                           colorlist as List<dynamic>,
                           (image?.path).toString() ?? "",
-                          (assets?[0].type).toString() == "AssetType.image"
+                         assets?.isNotEmpty??false? (assets?[0].type).toString() == "AssetType.image"
                               ? "image"
                               : (assets?[0].type).toString() ==
                                       "AssetType.video"
                                   ? "video"
-                                  : "color",
+                                  : "color":"color",
                           context);
                       controller.videoPlayerController.dispose();
                     },
@@ -228,6 +232,7 @@ class _CustomizedDeginState extends State<CustomizedDegin> {
                           ),
                           Expanded(
                             child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(19),
@@ -239,12 +244,76 @@ class _CustomizedDeginState extends State<CustomizedDegin> {
                                   ),
                                 ],
                               ),
-                              child: Center(
-                                  child: Text(
-                                "Food menu ",
-                                style: TextStyle(
-                                    color: Color(0xff9B9B9B), fontSize: 16),
-                              )),
+                              child:assets?.isNotEmpty??false? InkWell(
+                                onTap: (){
+                                  if(assets?.isNotEmpty??false){
+                                  assets?.clear();
+                                  _controller?.dispose();
+                                  image=null;
+                                  setState(() {
+                                    
+                                  });
+                                  }
+                                 
+                                },
+                                child: Row(
+                                  children: [
+                                      Spacer(),
+                                    Expanded(
+                                    
+                                      child:Icon(Icons.delete,   color: Color(0xff9B9B9B)),
+                                    ),
+                                   
+                                     Expanded(
+                                    flex: 2,
+                                       child:  Text(
+                                        "Remove background",
+                                        style: TextStyle(
+                                        color: Color(0xff9B9B9B), fontSize: 16),
+                                      ),
+                                       
+                                     ),
+                                      Spacer(),
+                                      
+                                      
+                                  ],
+                                ),
+                              ):
+                               Row(
+                                children: [
+                              
+                                  Expanded(
+                                    flex: 8,
+                                    child: Text(
+                                      "Food menu ",
+                                      style: TextStyle(
+                                      color: Color(0xff9B9B9B), fontSize: 16),
+                                    ),
+                                  ),
+                                 
+                                   Expanded(
+                                    flex: 2,
+                                     child: FlutterSwitch(
+                                               // height: 55.0,
+                                               
+                                               valueFontSize: 25.0,
+                                               toggleSize: 45.0,
+                                               value: status,
+                                               activeColor: Color(0xff98E6BF),
+                                               borderRadius: 30.0,
+                                               padding: 5,
+                                               showOnOff: false,
+                                               onToggle: (val) {
+                                                 setState(() {
+                                                   status = val;
+                                                 });
+                                               },
+                                             ),
+                                   ),
+                                    SizedBox(width: 10,),
+        
+                                ],
+                              ),
                             ),
                           ),
                         ],

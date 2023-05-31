@@ -9,14 +9,14 @@ import '../utils/reuseable_check_button.dart';
 import '../utils/reuseable_login_button.dart';
 import '../utils/reuseble_login_textfield.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LogOutScreen extends StatefulWidget {
+  const LogOutScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LogOutScreen> createState() => _LogOutScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LogOutScreenState extends State<LogOutScreen> {
   TextEditingController name = TextEditingController();
   TextEditingController passward = TextEditingController();
   TextEditingController branchid = TextEditingController();
@@ -31,8 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } else {
-      await LoginController()
-          .loginuser(name.text, passward.text, branchid.text, context);
+      // await LoginController()
+      //     .loginuser(name.text, passward.text, branchid.text, context);
     }
   }
 
@@ -126,14 +126,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 15,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    
-                      Loginbutton(
-                        text: "login".tr,
-                        sumbit: sumbit,
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: Loginbutton(
+                            text: "login".tr,
+                            sumbit: sumbit,
+                          ),
+                        ),
                       ),
-                        
                     ],
                   ),
                   Spacer(),

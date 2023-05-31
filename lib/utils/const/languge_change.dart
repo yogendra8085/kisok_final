@@ -44,7 +44,9 @@ class LocaleString extends Translations {
           "pleasedownload":
               'Please Download ReQueue App , and enjoy\n tracking your turn and get in line from any where !',
           'hinttext':
-              'Download the ReQueue application, to follow up and register your name in the waiting lists from anywhere'
+              'Download the ReQueue application, to follow up and register your name in the waiting lists from anywhere',
+              'back':"BACK",
+              'setting':"SETTING"
         },
         //HINDI LANGUAGE
         'ar_KW': {
@@ -86,7 +88,9 @@ class LocaleString extends Translations {
           "pleasedownload":
               "يرجى تنزيل تطبيق طلب والتمتع بتتبع دورك والالتفاف من أي مكان!",
           "hinttext":
-              "حمل تطبيق ريكيو ، لمتابعة و تسجيل اسمك في قوائم الانتظار من آي مكان"
+              "حمل تطبيق ريكيو ، لمتابعة و تسجيل اسمك في قوائم الانتظار من آي مكان",
+              'back':"خلف",
+              'setting':"جلسة"
         },
         //KANNADA LANGUAGE
       };

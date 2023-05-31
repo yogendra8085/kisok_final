@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class ReuseablenextButton extends StatelessWidget {
   VoidCallback sumbit;
+  
   ReuseablenextButton({required this.sumbit});
 
   @override

@@ -14,12 +14,14 @@ class ReuseableTextfield1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      keyboardType: TextInputType.phone,
+      keyboardType: TextInputType.name,
       readOnly: read,
+      
       controller: controller,
       style: TextStyleConst.h20bstylew,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       decoration: InputDecoration(
+        
           hintText: '${hinttext}',
           hintStyle: TextStyleConst.h20bstylew,
           enabledBorder: OutlineInputBorder(

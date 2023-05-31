@@ -52,10 +52,10 @@ class AppSettingController extends GetxController {
     print("type" + type);
     print(colorlist);
     if (image.isEmpty || image == "" || image == null) {
-    } else if (type == "AssetType.image") {
+    } else if (type == "image") {
       request.files
           .add(await http.MultipartFile.fromPath('image', (image).toString()));
-    } else if (type == "AssetType.video") {
+    } else if (type == "video") {
       request.files
           .add(await http.MultipartFile.fromPath('video', (image).toString()));
     }
