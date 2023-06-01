@@ -351,7 +351,7 @@ Get.to(() => SelectSubArea(party: list[selectindex],addCustomerDetailsModel: wid
                                                           child: ReuseableStep(
                                                               text:
                                                                   "chairs".tr +
-                                                                      " ${5}",
+                                                                      " ${widget.chairs}",
                                                               index: "1"),
                                                         ),
                                                         Expanded(

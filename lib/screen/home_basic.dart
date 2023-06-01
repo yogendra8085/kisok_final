@@ -77,7 +77,7 @@ class _HomeBasicState extends State<HomeBasic> {
   @override
   void dispose() {
     // TODO: implement dispose
-   controller. videoPlayerController?.dispose();
+   //controller. videoPlayerController?.dispose();
     super.dispose();
   }
 

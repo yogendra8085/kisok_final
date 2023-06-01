@@ -27,7 +27,7 @@ class _CheckYourTurnState extends State<CheckYourTurn> {
   TextEditingController phone = TextEditingController();
   CheckLineDetailsModel checkLineDetailsModel = CheckLineDetailsModel();
   String countryname = "KW";
-  String? contrycode;
+  String? contrycode="+965";
   AppSettingModel appSettingModel = AppSettingModel();
   final controller = Get.put(GetSettingController());
   VideoPlayerController? videoPlayerController;

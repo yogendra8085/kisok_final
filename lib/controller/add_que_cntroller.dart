@@ -37,7 +37,7 @@ class AddQueueController{
     "clientName":addCustomerDetailsModel.clientdetails?.clientName.toString(),
       };
       
-    print("body"+body.toString());
+    print("yg"+body.toString());
       
 
       
@@ -52,7 +52,8 @@ class AddQueueController{
  final response =
           await http.post(addqueue, body: jsonEncode(body), headers: headers);
  var data = jsonDecode(response.body.toString());
- print("satus code"+(response.statusCode).toString());
+         print("satus code"+(response.statusCode).toString());
+         print("yg"+(data).toString());
           if(response.statusCode==200){
                 _dialog.hide();
             Get.to(() => GreatScreen(addCustomerDetailsModel: addCustomerDetailsModel,));

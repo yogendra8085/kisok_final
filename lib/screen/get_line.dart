@@ -19,6 +19,7 @@ import '../model/addcustomer_details_model.dart';
 import '../model/app_setting_model.dart';
 import '../model/get_data_model.dart';
 import '../utils/const/text_style.dart';
+import '../utils/reuseable_getline_button.dart';
 import '../utils/reuseable_step.dart';
 import '../utils/reuseable_textfield1.dart';
 import '../utils/reuseble_next_button.dart';
@@ -488,8 +489,8 @@ class _GetlineState extends State<Getline> {
                                                         Expanded(
                                                           child: ReuseableStepnotselected(
                                                               text:
-                                                                  "chairs".tr +
-                                                                      " ${5}",
+                                                                  "chairs".tr
+                                                                    ,
                                                               index: "1"),
                                                         ),
                                                         Expanded(
@@ -509,7 +510,7 @@ class _GetlineState extends State<Getline> {
                                                               index: "4"),
                                                         ),
                                                         Spacer(),
-                                                        ReuseablenextButton(
+                                                        ReuseableGetlineButton(
                                                           sumbit: sumbit,
                                                         ),
                                                       ],

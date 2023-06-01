@@ -47,6 +47,7 @@ class LocaleString extends Translations {
               'Download the ReQueue application, to follow up and register your name in the waiting lists from anywhere',
               'back':"BACK",
               'setting':"SETTING"
+              
         },
         //HINDI LANGUAGE
         'ar_KW': {

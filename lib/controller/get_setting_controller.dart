@@ -49,10 +49,12 @@ class GetSettingController extends GetxController {
       print(response.statusCode);
       if (response.statusCode == 200) {
         appSettingModel = AppSettingModel.fromJson(data);
+        if(appSettingModel.data.toString()!="null"&&appSettingModel!=null&&appSettingModel.data!=[]&&appSettingModel.data?.length!=0){
+          print("hhhjjfjfjfjkfkjfjk");
         String colorString =
             ((appSettingModel.data?[0].colorCode).toString() ?? "");
 
-        // Remove the square brackets and split the string
+      //  Remove the square brackets and split the string
         if((appSettingModel.data?[0].colorCode).toString()!="null"&&type=="color"){
  List<String> colorStrings =
             colorString.replaceAll('[', '').replaceAll(']', '').split(', ');
@@ -88,6 +90,7 @@ class GetSettingController extends GetxController {
         }
 
         update();
+        }
 
         return appSettingModel;
       } else {

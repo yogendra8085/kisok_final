@@ -349,7 +349,7 @@ class _SelectAreaState extends State<SelectArea> {
                                                           child: ReuseableStep(
                                                               text:
                                                                   "chairs".tr +
-                                                                      " ${5}",
+                                                                      " ${widget.chaire}",
                                                               index: "1"),
                                                         ),
                                                         Expanded(

@@ -11,9 +11,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:video_player/video_player.dart';
 
 import '../controller/add_que_cntroller.dart';
+import '../controller/check_controller.dart';
 import '../controller/get_setting_controller.dart';
 import '../model/addcustomer_details_model.dart';
 import '../model/app_setting_model.dart';
+import '../model/select_sub_area_model.dart';
 import '../utils/const/text_style.dart';
 import '../utils/reuseable_step.dart';
 import '../utils/reuseble_next_button.dart';
@@ -40,8 +42,10 @@ class _SelectSubAreaState extends State<SelectSubArea> {
   final controller = Get.put(GetSettingController());
   bool isloading = true;
   VideoPlayerController? videoPlayerController;
+  SelectSubAreaModel selectSubAreaModel=SelectSubAreaModel();
   getdata() async {
     isloading = true;
+selectSubAreaModel=await CheckController().getselectsubare("34");
     //appSettingModel = await controller.getsetting();
     // if (controller.videourl != "null") {
     //   videoPlayerController = VideoPlayerController.network(
@@ -54,7 +58,7 @@ class _SelectSubAreaState extends State<SelectSubArea> {
     // }
     isloading = false;
 
-    //setState(() {});
+    setState(() {});
   }
 bool check=true;
   sumbit() async {
@@ -96,6 +100,7 @@ await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countryde
     return SafeArea(
         child: Scaffold(
       body: 
+          isloading==false?
            GetBuilder<GetSettingController>(
               init: GetSettingController(),
               builder: (newcontroller) {
@@ -251,7 +256,7 @@ await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countryde
                                                       child: ListView.builder(
                                                           shrinkWrap: true,
                                                           itemCount:
-                                                              list.length,
+                                                              selectSubAreaModel.listOfData?.length,
                                                           itemBuilder:
                                                               (context, index) {
                                                             return InkWell(
@@ -294,7 +299,7 @@ await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countryde
                                                                             : Color(0xFFFFFFFF))),
                                                                 child: Center(
                                                                     child: Text(
-                                                                  list[index],
+                                                                 "${ selectSubAreaModel.listOfData?[index].nameEn}",
                                                                   style: TextStyle(
                                                                       color: selectindex ==
                                                                               index
@@ -389,9 +394,11 @@ await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countryde
                         ),
                       ],
                     ));
-              })
+              }
+              ):Center(child: CircularProgressIndicator(),)
          
-    ));
+    )
+    );
     ;
   }
 }

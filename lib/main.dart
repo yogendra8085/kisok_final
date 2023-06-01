@@ -21,7 +21,7 @@ Future<void> main() async {
   } else {
     initialLocale = Locale('en', 'US');
   }
-   runApp( new  MyApp(initialLocale: initialLocale));
+   runApp( MyApp(initialLocale: initialLocale));
 }
 
 class MyApp extends StatefulWidget {

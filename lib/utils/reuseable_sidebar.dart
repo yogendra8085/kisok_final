@@ -49,7 +49,7 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
   String? branchar;
 
   getcolor() async {
-    appSettingModel = await controller.getsetting();
+   // appSettingModel = await controller.getsetting();
     final prefs = await SharedPreferences.getInstance();
     branchen = prefs.getString("branchEn");
     branchar = prefs.getString("branchAr");

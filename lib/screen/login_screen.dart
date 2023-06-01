@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } else {
       await LoginController()
-          .loginuser(name.text, passward.text, branchid.text, context);
+          .loginuser(name.text.trim(), passward.text.trim(), branchid.text.trim(), context);
     }
   }
 

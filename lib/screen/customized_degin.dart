@@ -112,7 +112,10 @@ bool status = false;
                                   ? "video"
                                   : "color":"color",
                           context);
-                      controller.videoPlayerController.dispose();
+                          if(controller.type=="video"){
+controller.videoPlayerController.dispose();
+                          } 
+                     
                     },
                     child: Icon(
                       Icons.arrow_forward_ios,
@@ -611,6 +614,9 @@ bool status = false;
                   ),
                 ),
               ),
+            ),
+                SizedBox(
+              height: 10,
             ),
           ]),
         ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_application_1/utils/const/const_string.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 import '../model/addcustomer_details_model.dart';
 import '../model/get_data_model.dart';
+import '../model/select_sub_area_model.dart';
 import '../screen/select_chair.dart';
 class CheckController{
   GetDataModel getDataModel=GetDataModel();
@@ -97,5 +99,29 @@ class CheckController{
         );
     }
     return addCustomerDetailsModel;
+  }
+  getselectsubare(String id) async {
+    SelectSubAreaModel selectSubAreaModel=SelectSubAreaModel();
+      final prefs = await SharedPreferences.getInstance();
+final Uri areaselected = Uri.parse(ConstString.baseurl+"kiosk/queue/getSpecialArea?restId=${id}");
+ final headers = {
+      'Content-Type': 'application/json',
+      "Authorization": "${prefs.getString("userToken")}"
+    };
+    try{
+      final response =
+          await http.get(areaselected, headers: headers);
+            var data = jsonDecode(response.body.toString());
+            if(response.statusCode==200){
+  selectSubAreaModel=SelectSubAreaModel.fromJson(data);
+  return selectSubAreaModel;
+            }
+          
+
+    } catch(e){
+        
+    }
+    return selectSubAreaModel;
+ 
   }
 }

@@ -26,24 +26,16 @@ class FoodMenuItmes extends StatefulWidget {
 class _FoodMenuItmesState extends State<FoodMenuItmes> {
   FoodMenuItemsModel foodMenuItemsModel = FoodMenuItemsModel();
   bool isloading = true;
-  AppSettingModel appSettingModel = AppSettingModel();
+  // AppSettingModel appSettingModel = AppSettingModel();
   final controller = Get.put(GetSettingController());
   VideoPlayerController? videoPlayerController;
   getdata() async {
     isloading = true;
+  
     foodMenuItemsModel = await FoodMenuControoler().getdata();
-   // appSettingModel = await controller.getsetting();
-    // if (controller.videourl != "null") {
-    //   videoPlayerController = VideoPlayerController.network(
-    //     controller.videourl.value,
-    //   );
-    //   await videoPlayerController?.initialize().then((value) {
-    //     videoPlayerController?.play();
-    //     videoPlayerController?.setLooping(true);
-    //   });
-    // }
+   
 
-    print(controller.color1.value);
+    print("url"+controller.videourl.toString());
     isloading = false;
     setState(() {});
   }
