@@ -13,8 +13,8 @@ class ReusealeCheckButton extends StatelessWidget {
     return InkWell(
       onTap: sumbit,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
-        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        padding: EdgeInsets.symmetric(vertical: 25),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment(0.0, -1.0),
@@ -34,7 +34,8 @@ class ReusealeCheckButton extends StatelessWidget {
         child: Center(
           child: Text(
             "check".tr,
-            style: TextStyle(color: Colors.white, fontSize: 25),
+            style: TextStyle(color: Colors.white, fontSize: 20,height: .9),
+            
           ),
         ),
       ),

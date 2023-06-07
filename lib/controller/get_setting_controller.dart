@@ -49,16 +49,21 @@ class GetSettingController extends GetxController {
       print(response.statusCode);
       if (response.statusCode == 200) {
         appSettingModel = AppSettingModel.fromJson(data);
-        if(appSettingModel.data.toString()!="null"&&appSettingModel!=null&&appSettingModel.data!=[]&&appSettingModel.data?.length!=0){
+       
+        type.value=(appSettingModel.data?[0].type).toString();
+        
+         if(appSettingModel.data.toString()!="null"&&appSettingModel!=null&&appSettingModel.data!=[]&&appSettingModel.data?.length!=0){
           print("hhhjjfjfjfjkfkjfjk");
         String colorString =
             ((appSettingModel.data?[0].colorCode).toString() ?? "");
+           
 
       //  Remove the square brackets and split the string
         if((appSettingModel.data?[0].colorCode).toString()!="null"&&type=="color"){
+      
  List<String> colorStrings =
             colorString.replaceAll('[', '').replaceAll(']', '').split(', ');
-
+ //print("${(colorStrings).toString()}"+"colorcodeliststring");
         // Convert the hexadecimal color values to Color objects
         List<Color> colors = colorStrings.map((str) {
           // Extract the hexadecimal value
@@ -66,10 +71,11 @@ class GetSettingController extends GetxController {
               radix: 16);
           return Color(value);
         }).toList();
+         // print("${(colors).toString()}"+"colorcodelist");
         color1.value = colors[1];
         color2.value = colors[2];
         colormincontainer.value = colors[0];
-        print(color2.value);
+        print(colors[2].toString()+"color");
         print(colors[0]);
         }
        

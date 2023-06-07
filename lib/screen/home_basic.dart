@@ -55,7 +55,7 @@ class _HomeBasicState extends State<HomeBasic> {
     //     videoPlayerController?.setLooping(true);
     //   });
     // }
-
+   print( prefs.getString("userToken"));
     print(controller.color1.value);
 
     isloding = false;

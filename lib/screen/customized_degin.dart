@@ -113,7 +113,7 @@ bool status = false;
                                   : "color":"color",
                           context);
                           if(controller.type=="video"){
-controller.videoPlayerController.dispose();
+                          controller.videoPlayerController.dispose();
                           } 
                      
                     },

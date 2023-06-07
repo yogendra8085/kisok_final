@@ -1,5 +1,5 @@
 class AddCustomerDetailsModel {
-  int? status;
+  dynamic status;
   bool? success;
   String? message;
   Clientdetails? clientdetails;
@@ -40,11 +40,11 @@ class AddCustomerDetailsModel {
 }
 
 class Clientdetails {
-  int? clientId;
+  dynamic clientId;
   String? clientName;
   String? clientPhone;
-  int? country;
-  int? clientGender;
+  dynamic country;
+  dynamic clientGender;
 
   Clientdetails(
       {this.clientId,
@@ -73,19 +73,19 @@ class Clientdetails {
 }
 
 class Countrydetails {
-  int? countryId;
+  dynamic countryId;
   String? countryName;
-  bool? countryStatus;
-  String? countryCode;
+  dynamic countryStatus;
+  dynamic countryCode;
   String? countryCurancy;
   String? countryNameAr;
   String? flag;
-  bool? restActive;
-  int? length;
+  dynamic restActive;
+  dynamic length;
   String? prefix;
   String? shortCode;
-  Null? ticketActive;
-  Null? region;
+  dynamic ticketActive;
+  dynamic region;
 
   Countrydetails(
       {this.countryId,

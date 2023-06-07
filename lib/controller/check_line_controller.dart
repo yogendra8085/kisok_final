@@ -31,7 +31,7 @@ class CheckLineController {
     Map<String, dynamic> body = {
       'restid': "33",
       'mobileNo': number,
-      "countryCode": contrycode,
+      "countryCode": int.parse((contrycode.replaceAll("+", "")).toString()),
     };
     try {
       final response =
@@ -81,7 +81,7 @@ class CheckLineController {
     Map<String, dynamic> body = {
       'restid': "33",
       'mobileNo': number,
-      "countryCode": contrycode,
+      "countryCode": int.parse((contrycode.replaceAll("+", "")).toString()),
     };
     print(body);
    // try {

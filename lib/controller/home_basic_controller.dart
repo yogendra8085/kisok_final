@@ -27,6 +27,7 @@ class HomeBasicController {
       print(response.statusCode);
       if (response.statusCode == 200) {
         homeBasicModel = HomeBasicModel.fromJson(data);
+        print("${homeBasicModel.data?.branchNameEn}");
         return homeBasicModel;
       } else {
         Get.showSnackbar(

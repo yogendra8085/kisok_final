@@ -22,7 +22,7 @@ class CheckController{
       "Authorization": "${prefs.getString("userToken")}"
     };
     print("print data");
-    try{
+  //  try{
  final response =
           await http.get(_checkline, headers: headers);
           var data = jsonDecode(response.body.toString());
@@ -40,15 +40,15 @@ class CheckController{
         );
         }
 
-    } catch(e){
-          Get.showSnackbar(
-          GetSnackBar(
-            title:"Failed",
-            message:e.toString() ,
-            duration: const Duration(seconds: 3),
-          ),
-        );
-    }
+  //  // } catch(e){
+  //         Get.showSnackbar(
+  //         GetSnackBar(
+  //           title:"Failed",
+  //           message:e.toString() ,
+  //           duration: const Duration(seconds: 3),
+  //         ),
+  //       );
+  //   }
     return getDataModel;
     
   }
@@ -103,7 +103,7 @@ class CheckController{
   getselectsubare(String id) async {
     SelectSubAreaModel selectSubAreaModel=SelectSubAreaModel();
       final prefs = await SharedPreferences.getInstance();
-final Uri areaselected = Uri.parse(ConstString.baseurl+"kiosk/queue/getSpecialArea?restId=${id}");
+final Uri areaselected = Uri.parse(ConstString.baseurl+"kiosk/queue/getSpecialArea");
  final headers = {
       'Content-Type': 'application/json',
       "Authorization": "${prefs.getString("userToken")}"
