@@ -120,7 +120,7 @@ checkLineDetailsModel = await CheckLineController().getdataturn("33",
                               Expanded(
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 250, vertical: 100),
+                                      horizontal: 250, vertical: 80),
                                   child: BlurryContainer(
                                     blur: 10,
                                     color: newcontroller.colormincontainer ==

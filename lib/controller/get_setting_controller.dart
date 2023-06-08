@@ -49,8 +49,13 @@ class GetSettingController extends GetxController {
       print(response.statusCode);
       if (response.statusCode == 200) {
         appSettingModel = AppSettingModel.fromJson(data);
-       
-        type.value=(appSettingModel.data?[0].type).toString();
+       if(appSettingModel.data==[]){
+
+       }
+       else{
+         type.value=(appSettingModel.data?[0].type).toString();
+       }
+      
         
          if(appSettingModel.data.toString()!="null"&&appSettingModel!=null&&appSettingModel.data!=[]&&appSettingModel.data?.length!=0){
           print("hhhjjfjfjfjkfkjfjk");

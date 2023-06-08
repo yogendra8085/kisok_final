@@ -8,4 +8,5 @@ class ConstString {
   static String setting = "kiosk/setting/appSettings";
   static String getsetting = "kiosk/setting/getKioskSetting";
   static String   addqueue = "kiosk/queue/createQueue";
+   static String   gettable = "kiosk/queue/getChaires";
 }

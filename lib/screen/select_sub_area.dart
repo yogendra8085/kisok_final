@@ -45,7 +45,7 @@ class _SelectSubAreaState extends State<SelectSubArea> {
   SelectSubAreaModel selectSubAreaModel=SelectSubAreaModel();
   getdata() async {
     isloading = true;
-selectSubAreaModel=await CheckController().getselectsubare("34");
+selectSubAreaModel=await CheckController().getselectsubare();
     //appSettingModel = await controller.getsetting();
     // if (controller.videourl != "null") {
     //   videoPlayerController = VideoPlayerController.network(
@@ -352,17 +352,18 @@ await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countryde
                                                         height: 8,
                                                       ),
                                                       Spacer(),
-                                                      Expanded(
-                                                        child: ReuseableStep(
-                                                            text: "chairs".tr +
-                                                                " ${5}",
-                                                            index: "1"),
-                                                      ),
-                                                      Expanded(
-                                                        child: ReuseableStep(
-                                                            text: "area".tr,
-                                                            index: "2"),
-                                                      ),
+                                                       Expanded(
+                                                          child: ReuseableStep(
+                                                              text: "area".tr,
+                                                              index: "1"),
+                                                        ),
+                                                        Expanded(
+                                                          child: ReuseableStep(
+                                                              text:
+                                                                  "chairs".tr +
+                                                                      " ${widget.chairs}",
+                                                              index: "2"),
+                                                        ),
                                                       Expanded(
                                                         child: ReuseableStep(
                                                             text: "party".tr,

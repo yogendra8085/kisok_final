@@ -347,18 +347,19 @@ Get.to(() => SelectSubArea(party: list[selectindex],addCustomerDetailsModel: wid
                                                           height: 8,
                                                         ),
                                                         Spacer(),
+                                                          Expanded(
+                                                          child: ReuseableStep(
+                                                              text: "area".tr,
+                                                              index: "1"),
+                                                        ),
                                                         Expanded(
                                                           child: ReuseableStep(
                                                               text:
                                                                   "chairs".tr +
                                                                       " ${widget.chairs}",
-                                                              index: "1"),
-                                                        ),
-                                                        Expanded(
-                                                          child: ReuseableStep(
-                                                              text: "area".tr,
                                                               index: "2"),
                                                         ),
+                                                      
                                                         Expanded(
                                                           child: ReuseableStep(
                                                               text: "party".tr,

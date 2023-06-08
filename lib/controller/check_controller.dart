@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import '../model/addcustomer_details_model.dart';
 import '../model/get_data_model.dart';
 import '../model/select_sub_area_model.dart';
+import '../screen/select_area.dart';
 import '../screen/select_chair.dart';
 class CheckController{
   GetDataModel getDataModel=GetDataModel();
@@ -69,7 +70,7 @@ class CheckController{
           print("satus code add"+(response.statusCode).toString());
         if(response.statusCode==200){
            addCustomerDetailsModel=AddCustomerDetailsModel.fromJson(data);
-            Get.to(() => SelectChair(addCustomerDetailsModel:addCustomerDetailsModel ,));
+            Get.to(() => SelectArea(addCustomerDetailsModel:addCustomerDetailsModel ,));
               Get.showSnackbar(
           GetSnackBar(
             title: "Sucess",
@@ -100,7 +101,7 @@ class CheckController{
     }
     return addCustomerDetailsModel;
   }
-  getselectsubare(String id) async {
+  getselectsubare() async {
     SelectSubAreaModel selectSubAreaModel=SelectSubAreaModel();
       final prefs = await SharedPreferences.getInstance();
 final Uri areaselected = Uri.parse(ConstString.baseurl+"kiosk/queue/getSpecialArea");
@@ -112,8 +113,11 @@ final Uri areaselected = Uri.parse(ConstString.baseurl+"kiosk/queue/getSpecialAr
       final response =
           await http.get(areaselected, headers: headers);
             var data = jsonDecode(response.body.toString());
+            print(response.statusCode.toString()+"responsecode");
+             print(response.body.toString()+"responsecode");
             if(response.statusCode==200){
   selectSubAreaModel=SelectSubAreaModel.fromJson(data);
+   print("${selectSubAreaModel.listOfData?.length.toString()}+length");
   return selectSubAreaModel;
             }
           

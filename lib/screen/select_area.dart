@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_application_1/screen/select_chair.dart';
 import 'package:flutter_application_1/screen/select_party.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
@@ -17,9 +18,9 @@ import '../utils/reuseble_not_selected_step.dart';
 import 'home_basic.dart';
 
 class SelectArea extends StatefulWidget {
-  String chaire;
+ 
   AddCustomerDetailsModel addCustomerDetailsModel;
-   SelectArea({required this.chaire,required this.addCustomerDetailsModel});
+   SelectArea({required this.addCustomerDetailsModel});
 
   @override
   State<SelectArea> createState() => _SelectAreaState();
@@ -65,7 +66,7 @@ class _SelectAreaState extends State<SelectArea> {
        setState(() {
         
       });
- Get.to(() => SelectParty(area: list[selectindex],addCustomerDetailsModel: widget.addCustomerDetailsModel,chairs: widget.chaire,));
+ Get.to(() => SelectChair(addCustomerDetailsModel: widget.addCustomerDetailsModel,area: list[selectindex],));
     }
    
   }
@@ -345,16 +346,17 @@ class _SelectAreaState extends State<SelectArea> {
                                                           height: 8,
                                                         ),
                                                         Spacer(),
-                                                        Expanded(
-                                                          child: ReuseableStep(
-                                                              text:
-                                                                  "chairs".tr +
-                                                                      " ${widget.chaire}",
-                                                              index: "1"),
-                                                        ),
+                                                       
                                                         Expanded(
                                                           child: ReuseableStep(
                                                               text: "area".tr,
+                                                              index: "1"),
+                                                        ),
+                                                         Expanded(
+                                                          child: ReuseableStepnotselected(
+                                                              text:
+                                                                  "chairs".tr +
+                                                                      "${0}",
                                                               index: "2"),
                                                         ),
                                                         Expanded(

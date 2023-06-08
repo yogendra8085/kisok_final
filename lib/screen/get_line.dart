@@ -76,7 +76,7 @@ class _GetlineState extends State<Getline> {
    AddCustomerDetailsModel addCustomerDetailsModel=AddCustomerDetailsModel();
   sumbit() async {
     print(gender!+"gender");
-    if(phone.text.isEmpty||(name?.text).toString()=="No data"||(gender).toString()=="other"||(name?.text).toString().isEmpty){
+    if(phone.text.isEmpty||(name?.text).toString()==""||(gender).toString()=="other"||(name?.text).toString().isEmpty){
              Get.showSnackbar(
           GetSnackBar(
             title: "Failed",
@@ -289,7 +289,7 @@ class _GetlineState extends State<Getline> {
                                                                     print("call api");
                                                                   
                                                                 getDataModel= await CheckController().getdata(countrycode!, value);
-                                                                name=TextEditingController(text:"${getDataModel.listOfData?.clientName ?? 'No data'}",
+                                                                name=TextEditingController(text:"${getDataModel.listOfData?.clientName ?? ''}",
                                                                
                                                                
                                                                 );
@@ -486,6 +486,11 @@ class _GetlineState extends State<Getline> {
                                                           height: 8,
                                                         ),
                                                         Spacer(),
+                                                         Expanded(
+                                                          child: ReuseableStepnotselected(
+                                                              text: "area".tr,
+                                                              index: "1"),
+                                                        ),
                                                         Expanded(
                                                           child: ReuseableStepnotselected(
                                                               text:
@@ -493,11 +498,7 @@ class _GetlineState extends State<Getline> {
                                                                     ,
                                                               index: "1"),
                                                         ),
-                                                        Expanded(
-                                                          child: ReuseableStepnotselected(
-                                                              text: "area".tr,
-                                                              index: "2"),
-                                                        ),
+                                                       
                                                         Expanded(
                                                           child: ReuseableStepnotselected(
                                                               text: "party".tr,

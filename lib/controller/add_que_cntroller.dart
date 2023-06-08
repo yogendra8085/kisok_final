@@ -30,7 +30,7 @@ class AddQueueController{
     "tablePosition":tableposition, 
     "tagId":"-1", 
     "subTagId":"-1", 
-    "rest_id":'33',
+    
     "countryCode":int.parse((addCustomerDetailsModel.countrydetails?.countryCode.toString().replaceAll("+","")).toString(),),
     "clientPhone":addCustomerDetailsModel.clientdetails?.clientPhone.toString(),
     "clientGender":addCustomerDetailsModel.clientdetails?.clientGender.toString(),
