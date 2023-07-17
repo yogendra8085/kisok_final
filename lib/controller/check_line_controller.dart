@@ -4,7 +4,6 @@ import '../utils/const/const_string.dart';
 import '../model/expected_time_model.dart';
 import '../utils/const/const_string.dart';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -29,10 +28,8 @@ class CheckLineController {
       "Authorization": "${prefs.getString("userToken")}"
     };
     Map<String, dynamic> body = {
-      
       'mobileNo': number,
-      "countryCode": int.parse((contrycode.replaceAll("+", "")).toString()),
-    };
+      "countryCode": int.parse((contrycode.replaceAll("+", "")).toString()),};
     try {
       final response =
           await http.post(_checkline, headers: headers, body: jsonEncode(body));

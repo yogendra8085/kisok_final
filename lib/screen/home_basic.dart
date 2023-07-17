@@ -21,6 +21,7 @@ import '../utils/const/text_style.dart';
 import '../utils/reuseable_sidebar.dart';
 import '../utils/reuseble_button.dart';
 import '../utils/reuseble_home_items.dart';
+import 'foodmenu_itmes.dart';
 
 class HomeBasic extends StatefulWidget {
   const HomeBasic({super.key});
@@ -84,143 +85,154 @@ class _HomeBasicState extends State<HomeBasic> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-          body: isloding == false
-              ? GetBuilder<GetSettingController>(
-                  init: GetSettingController(),
-                  builder: (newcontroller) {
-                    return Container(
-                        decoration: newcontroller.imageurl.value == "" ||
-                                newcontroller.imageurl.value == "null" ||
-                                newcontroller.type.value == "color"
-                            ? BoxDecoration(
-                                gradient: new RadialGradient(
-                                colors: [
-                                  newcontroller.color1.value == null
-                                      ? Color(0xFF7725CC)
-                                      : newcontroller.color1.value,
-                                  newcontroller.color2.value == null
-                                      ? Color(0xFF31206D)
-                                      : newcontroller.color2.value,
-                                ],
-                              ))
-                            : BoxDecoration(
-                                // gradient: LinearGradient(
-                                //     colors: [Color(color1), Color(color2)]),
-
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      (newcontroller.imageurl.value)
-                                          .toString()),
-                                  fit: BoxFit.cover,
+      child: GestureDetector(
+          onHorizontalDragEnd: (DragEndDetails details) {
+      if (details.primaryVelocity! > 0) {
+        // User swiped Left
+          Get.to(() => FoodMenuItmes());
+      } else if (details.primaryVelocity! < 0) {
+        // User swiped Right
+          Get.to(() => FoodMenuItmes());
+      }
+    },
+        child: Scaffold(
+            body: isloding == false
+                ? GetBuilder<GetSettingController>(
+                    init: GetSettingController(),
+                    builder: (newcontroller) {
+                      return Container(
+                          decoration: newcontroller.imageurl.value == "" ||
+                                  newcontroller.imageurl.value == "null" ||
+                                  newcontroller.type.value == "color"
+                              ? BoxDecoration(
+                                  gradient: new RadialGradient(
+                                  colors: [
+                                    newcontroller.color1.value == null
+                                        ? Color(0xFF7725CC)
+                                        : newcontroller.color1.value,
+                                    newcontroller.color2.value == null
+                                        ? Color(0xFF31206D)
+                                        : newcontroller.color2.value,
+                                  ],
+                                ))
+                              : BoxDecoration(
+                                  // gradient: LinearGradient(
+                                  //     colors: [Color(color1), Color(color2)]),
+      
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        (newcontroller.imageurl.value)
+                                            .toString()),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                        child: Stack(
-                          children: [
-                            newcontroller.videourl.value != "null"
-                                ? newcontroller.type.value == "video"
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child:
-                                            VideoPlayer(newcontroller.videoPlayerController),
-                                      )
-                                    : Container()
-                                : Container(),
-                            Center(
-                                child: Row(
-                              children: [
-                                Expanded(flex: 3, child: Reuseablesidebar()),
-                                Expanded(
-                                    flex: 7,
-                                    child: (homeBasicModel.data?.insideActive)
-                                                    as bool ==
-                                                true &&
-                                            (homeBasicModel.data?.outsideActive)
-                                                    as bool ==
-                                                true
-                                        ? Center(
-                                            child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                "Sorry !",
-                                                style: TextStyleConst.b55stylew,
-                                              ),
-                                              Text(
-                                                " Restaurant is FULL now",
-                                                style: TextStyleConst.b44stylew,
-                                              ),
-                                            ],
-                                          ))
-                                        : Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 50,
-                                              ),
-                                              (homeBasicModel.data
-                                                      ?.insideActive) as bool
-                                                  ? SizedBox.shrink()
-                                                  : Expanded(
-                                                      child: HomeItems(
-                                                      title: "inside".tr,
-                                                      personcount:
-                                                          (homeBasicModel.data
-                                                                      ?.inside)
-                                                                  .toString() ??
-                                                              "0",
-                                                      expectedtime: timetostring(
-                                                          expectedTimeModel
-                                                                  .insideTime
-                                                                  ?.minutes ??
-                                                              0,
-                                                          homeBasicModel
-                                                              .data?.inside),
-                                                      full: homeBasicModel.data
-                                                              ?.isInsideFull
-                                                          as bool,
-                                                    )),
-                                              SizedBox(
-                                                width: 30,
-                                              ),
-                                              (homeBasicModel.data
-                                                      ?.outsideActive) as bool
-                                                  ? SizedBox.shrink()
-                                                  : Expanded(
-                                                      child: HomeItems(
-                                                      title: "outside".tr,
-                                                      personcount:
-                                                          (homeBasicModel.data
-                                                                      ?.outside)
-                                                                  .toString() ??
-                                                              "0",
-                                                      expectedtime: timetostring(
-                                                          expectedTimeModel
-                                                                  .outsideTime
-                                                                  ?.minutes ??
-                                                              0,
-                                                          homeBasicModel
-                                                              .data?.outside),
-                                                      full: homeBasicModel.data
-                                                              ?.isOutsideFull
-                                                          as bool,
-                                                    )),
-                                              SizedBox(
-                                                width: 50,
-                                              ),
-                                            ],
-                                          ))
-                              ],
-                            )),
-                          ],
-                        ));
-                  })
-              : Center(
-                  child: CircularProgressIndicator(),
-                )),
+                          child: Stack(
+                            children: [
+                              newcontroller.videourl.value != "null"
+                                  ? newcontroller.type.value == "video"
+                                      ? ClipRRect(
+                                          borderRadius: BorderRadius.circular(15),
+                                          child:
+                                              VideoPlayer(newcontroller.videoPlayerController),
+                                        )
+                                      : Container()
+                                  : Container(),
+                              Center(
+                                  child: Row(
+                                children: [
+                                  Expanded(flex: 3, child: Reuseablesidebar()),
+                                  Expanded(
+                                      flex: 7,
+                                      child: (homeBasicModel.data?.insideActive)
+                                                      as bool ==
+                                                  true &&
+                                              (homeBasicModel.data?.outsideActive)
+                                                      as bool ==
+                                                  true
+                                          ? Center(
+                                              child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "Sorry !",
+                                                  style: TextStyleConst.b55stylew,
+                                                ),
+                                                Text(
+                                                  " Restaurant is FULL now",
+                                                  style: TextStyleConst.b44stylew,
+                                                ),
+                                              ],
+                                            ))
+                                          : Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 50,
+                                                ),
+                                                (homeBasicModel.data
+                                                        ?.insideActive) as bool
+                                                    ? SizedBox.shrink()
+                                                    : Expanded(
+                                                        child: HomeItems(
+                                                        title: "inside".tr,
+                                                        personcount:
+                                                            (homeBasicModel.data
+                                                                        ?.inside)
+                                                                    .toString() ??
+                                                                "0",
+                                                        expectedtime: timetostring(
+                                                            expectedTimeModel
+                                                                    .insideTime
+                                                                    ?.minutes ??
+                                                                0,
+                                                            homeBasicModel
+                                                                .data?.inside),
+                                                        full: homeBasicModel.data
+                                                                ?.isInsideFull
+                                                            as bool,
+                                                      )),
+                                                SizedBox(
+                                                  width: 30,
+                                                ),
+                                                (homeBasicModel.data
+                                                        ?.outsideActive) as bool
+                                                    ? SizedBox.shrink()
+                                                    : Expanded(
+                                                        child: HomeItems(
+                                                        title: "outside".tr,
+                                                        personcount:
+                                                            (homeBasicModel.data
+                                                                        ?.outside)
+                                                                    .toString() ??
+                                                                "0",
+                                                        expectedtime: timetostring(
+                                                            expectedTimeModel
+                                                                    .outsideTime
+                                                                    ?.minutes ??
+                                                                0,
+                                                            homeBasicModel
+                                                                .data?.outside),
+                                                        full: homeBasicModel.data
+                                                                ?.isOutsideFull
+                                                            as bool,
+                                                      )),
+                                                SizedBox(
+                                                  width: 50,
+                                                ),
+                                              ],
+                                            ))
+                                ],
+                              )),
+                            ],
+                          ));
+                    })
+                : Center(
+                    child: CircularProgressIndicator(),
+                  )),
+      ),
     );
   }
 }

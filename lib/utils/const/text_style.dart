@@ -87,7 +87,7 @@ class TextStyleConst {
       fontWeight: FontWeight.bold);
   static TextStyle b80stylew = TextStyle(
       color: Colors.white,
-      fontSize: 70,
+      fontSize: 80,
       fontFamily: fontfaimily4,
       fontWeight: FontWeight.bold);
   static TextStyle l64stylew = TextStyle(

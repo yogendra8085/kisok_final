@@ -270,7 +270,7 @@ Get.to(() => SelectSubArea(party: list[selectindex],addCustomerDetailsModel: wid
                                                                           18),
                                                                   margin: EdgeInsets.symmetric(
                                                                       horizontal:
-                                                                          90,
+                                                                          180,
                                                                       vertical:
                                                                           10),
                                                                   // width: 373.64,
@@ -382,7 +382,8 @@ Get.to(() => SelectSubArea(party: list[selectindex],addCustomerDetailsModel: wid
                                               ),
                                             ],
                                           ),
-                                        )
+                                        ),
+                                          SizedBox(height: 38,)
                                       ],
                                     ),
                                   ),

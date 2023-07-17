@@ -520,6 +520,7 @@ class _GetlineState extends State<Getline> {
                                             ],
                                           ),
                                         ),
+                                        SizedBox(height: 30,)
                                       ],
                                     ),
                                   ),

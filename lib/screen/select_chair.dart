@@ -559,7 +559,8 @@ for(int i=0;i<tabaleChairsModel.listOfData!.length;i++){
                                               ),
                                             ],
                                           ),
-                                        )
+                                        ),
+                                          SizedBox(height: 38,)
                                       ],
                                     ),
                                   ),

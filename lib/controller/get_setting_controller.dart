@@ -26,7 +26,7 @@ class GetSettingController extends GetxController {
   var colormincontainer = Color(0xff352073).obs;
   var imageurl = "null".obs;
   var videourl = "null".obs;
-  var type = "null".obs;
+  var type = "color".obs;
   var videoPlayerController;
   final Uri _getsetting =
       Uri.parse(ConstString.baseurl + ConstString.getsetting);
@@ -49,12 +49,12 @@ class GetSettingController extends GetxController {
       print(response.statusCode);
       if (response.statusCode == 200) {
         appSettingModel = AppSettingModel.fromJson(data);
-       if(appSettingModel.data==[]){
+      //  if(appSettingModel.data==[]){
 
-       }
-       else{
-         type.value=(appSettingModel.data?[0].type).toString();
-       }
+      //  }
+      //  else{
+      //   type.value=(appSettingModel.data?[0].type).toString();
+      //  }
       
         
          if(appSettingModel.data.toString()!="null"&&appSettingModel!=null&&appSettingModel.data!=[]&&appSettingModel.data?.length!=0){

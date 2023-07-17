@@ -109,7 +109,7 @@ class _CheckYourTurnResultState extends State<CheckYourTurnResult> {
                                   : Container()
                               : Container(),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 139),
+                            padding: EdgeInsets.symmetric(horizontal: 140),
                             child: Column(
                               children: [
                                 SizedBox(
@@ -166,64 +166,67 @@ class _CheckYourTurnResultState extends State<CheckYourTurnResult> {
                                           horizontal: 10, vertical: 10),
                                       child: Column(
                                         children: [
-                                          Expanded(
-                                            child: Row(
-                                              children: [
-                                                Expanded(
-                                                  flex: 3,
-                                                  child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 5,
-                                                            vertical: 8),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12),
-                                                        border: Border.all(
-                                                          color:
-                                                              Color(0x40ffffff),
-                                                        )),
-                                                    child: CountryCodePicker(
-                                                      flagWidth: 80,
-                                                      enabled: false,
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 3,
+                                                child: Container(
+                                                   height: 90,
+                                                  padding:
+                                                      EdgeInsets.symmetric(
+                                                          horizontal: 5,
+                                                          vertical: 8),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(12),
+                                                      border: Border.all(
+                                                        color:
+                                                            Color(0x40ffffff),
+                                                      )),
+                                                  child: CountryCodePicker(
+                                                    flagWidth: 80,
+                                                    enabled: false,
 
-                                                      initialSelection:
-                                                          widget.contryname,
-                                                      favorite: ['+965', 'KW'],
+                                                    initialSelection:
+                                                        widget.contryname,
+                                                    favorite: ['+965', 'KW'],
 
-                                                      showCountryOnly: false,
-                                                      // optional. Shows only country name and flag when popup is closed.
-                                                      showOnlyCountryWhenClosed:
-                                                          false,
-                                                      textStyle: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 20),
-                                                      // optional. aligns the flag and the Text left
-                                                      alignLeft: false,
-                                                    ),
+                                                    showCountryOnly: false,
+                                                    // optional. Shows only country name and flag when popup is closed.
+                                                    showOnlyCountryWhenClosed:
+                                                        false,
+                                                    textStyle: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20),
+                                                    // optional. aligns the flag and the Text left
+                                                    alignLeft: false,
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Expanded(
-                                                  flex: 7,
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Expanded(
+                                                flex: 7,
+                                                child: Container(
+                                                 height: 90,
                                                   child: ReuseableTextfield(
                                                     hinttext: "${widget.phone}",
                                                     controller: phone,
                                                     read: true,
                                                   ),
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                           SizedBox(
-                                            height: 5,
+                                            height: 15,
                                           ),
                                           Expanded(
                                             flex: 3,
                                             child: Container(
+                                              
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(19),

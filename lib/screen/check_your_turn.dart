@@ -163,7 +163,7 @@ class _CheckYourTurnState extends State<CheckYourTurn> {
                                               .withOpacity(.5),
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 10),
+                                            horizontal: 29, vertical: 10),
                                         child: Column(
                                           children: [
                                             Row(
@@ -171,6 +171,7 @@ class _CheckYourTurnState extends State<CheckYourTurn> {
                                                 Expanded(
                                                   flex: 3,
                                                   child: Container(
+                                                    height: 90,
                                                     padding:
                                                         EdgeInsets.symmetric(
                                                             horizontal: 5,
@@ -219,9 +220,12 @@ class _CheckYourTurnState extends State<CheckYourTurn> {
                                                 ),
                                                 Expanded(
                                                   flex: 7,
-                                                  child: ReuseableTextfield(
-                                                    hinttext: "99933378",
-                                                    controller: phone,
+                                                  child: Container(
+                                                    height: 90,
+                                                    child: ReuseableTextfield(
+                                                      hinttext: "99933378",
+                                                      controller: phone,
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -229,7 +233,7 @@ class _CheckYourTurnState extends State<CheckYourTurn> {
                                             Spacer(),
                                             Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 100),
+                                                  horizontal: 139),
                                               child: ReusealeCheckButton(
                                                   sumbit: sumbit),
                                             )

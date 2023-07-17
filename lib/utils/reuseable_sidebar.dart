@@ -30,7 +30,7 @@ class Reuseablesidebar extends StatefulWidget {
 }
 
 class _ReuseablesidebarState extends State<Reuseablesidebar> {
-  List list = ["getline", "checkline", "foodmenu"];
+  List list = ["getline", "checkline"];
   int index1 = -1;
   Color color1 = Color(0xff7325C6);
   Color color2 = Color(0xff352073);
@@ -74,6 +74,9 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
       Get.locale,
     );
   }
+  doublesumbit(){
+   Get.to(() => CustomizedDegin())?.then((value) {});
+  }
 
   @override
   void initState() {
@@ -106,33 +109,35 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
                           flex: 8,
                           child: ReuseableButton(
                             sumbit: sumbit,
+                            doublesumbit: doublesumbit,
+
                           )),
-                      Expanded(
-                        flex:2 ,
-                        child: InkWell(
-                            onTap: () {
-                              Get.to(() => CustomizedDegin())?.then((value) {});
-                            },
-                            child: Icon(
-                              Icons.settings,
-                              color: Colors.white,
-                              size: 30,
-                            )),
-                      ),
-                       Expanded(
-                        flex: 2,
-                        child: InkWell(
-                            onTap: () async {
-                              final prefs = await SharedPreferences.getInstance();
-                              prefs.clear();
-                              Get.to(() => LoginScreen())?.then((value) {});
-                            },
-                            child: Icon(
-                              Icons.logout,
-                              color: Colors.white,
-                              size: 30,
-                            )),
-                      ),
+                      // Expanded(
+                      //   flex:2 ,
+                      //   child: InkWell(
+                      //       onTap: () {
+                      //         Get.to(() => CustomizedDegin())?.then((value) {});
+                      //       },
+                      //       child: Icon(
+                      //         Icons.settings,
+                      //         color: Colors.white,
+                      //         size: 30,
+                      //       )),
+                      // ),
+                      //  Expanded(
+                      //   flex: 2,
+                      //   child: InkWell(
+                      //       onTap: () async {
+                      //         final prefs = await SharedPreferences.getInstance();
+                      //         prefs.clear();
+                      //         Get.to(() => LoginScreen())?.then((value) {});
+                      //       },
+                      //       child: Icon(
+                      //         Icons.logout,
+                      //         color: Colors.white,
+                      //         size: 30,
+                      //       )),
+                      // ),
                     ],
                   ),
                   Spacer(),
@@ -165,10 +170,11 @@ class _ReuseablesidebarState extends State<Reuseablesidebar> {
                           setState(() {});
                         },
                         child: Container(
+                          height: 90,
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(20),
                               border: Border.all(
                                   color: index1 != i
                                       ? Colors.white

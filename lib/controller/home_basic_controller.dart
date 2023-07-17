@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 import 'package:http/http.dart' as http;
 import '../model/homebasic_model.dart';
+import '../screen/login_screen.dart';
 import '../utils/const/const_string.dart';
 
 class HomeBasicController {
@@ -25,7 +26,9 @@ class HomeBasicController {
 
       var data = jsonDecode(response.body.toString());
       print(response.statusCode);
+        //print(data+"jsjjd");
       if (response.statusCode == 200) {
+      
         homeBasicModel = HomeBasicModel.fromJson(data);
         print("${homeBasicModel.data?.branchNameEn}");
         return homeBasicModel;
@@ -39,13 +42,7 @@ class HomeBasicController {
         );
       }
     } catch (e) {
-      // Get.showSnackbar(
-      //   GetSnackBar(
-      //     title: homeBasicModel.success.toString(),
-      //     message: e.toString(),
-      //     duration: const Duration(seconds: 3),
-      //   ),
-      // );
+    //  Get.offAll(()=>LoginScreen());
     }
   }
 }

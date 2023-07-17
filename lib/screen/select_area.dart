@@ -269,7 +269,7 @@ class _SelectAreaState extends State<SelectArea> {
                                                                           18),
                                                                   margin: EdgeInsets.symmetric(
                                                                       horizontal:
-                                                                          90,
+                                                                          150,
                                                                       vertical:
                                                                           10),
                                                                   // width: 373.64,
@@ -383,7 +383,8 @@ class _SelectAreaState extends State<SelectArea> {
                                               ),
                                             ],
                                           ),
-                                        )
+                                        ),
+                                        SizedBox(height: 38,)
                                       ],
                                     ),
                                   ),

@@ -277,7 +277,7 @@ await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countryde
                                                                 margin: EdgeInsets
                                                                     .symmetric(
                                                                         horizontal:
-                                                                            90,
+                                                                            180,
                                                                         vertical:
                                                                             10),
                                                                 // width: 373.64,
@@ -384,7 +384,8 @@ await AddQueueController().addqueue("${ widget.addCustomerDetailsModel.countryde
                                             ),
                                           ],
                                         ),
-                                      )
+                                      ),
+                                        SizedBox(height: 38,)
                                     ],
                                   ),
                                 ),

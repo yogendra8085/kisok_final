@@ -147,7 +147,7 @@ class _FoodMenuDetailsState extends State<FoodMenuDetails> {
                                       Expanded(
                                           child: Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: 60, vertical: 30),
+                                            horizontal: 100, vertical: 30),
                                         child: BlurryContainer(
                                           blur: 10,
                                           color:
@@ -159,7 +159,7 @@ class _FoodMenuDetailsState extends State<FoodMenuDetails> {
                                                       .withOpacity(.5),
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
-                                                horizontal: 20),
+                                                horizontal: 10),
                                             child: Column(
                                               children: [
                                                 // widget.imageurl.isEmpty ||
@@ -167,35 +167,40 @@ class _FoodMenuDetailsState extends State<FoodMenuDetails> {
                                                 //     ?
                                                 Expanded(
                                                   flex: 3,
-                                                  child:  CachedNetworkImage(
-                                                                imageUrl:
-                                                                  widget.imageurl,
-                                                                placeholder:
-                                                                    (context,
-                                                                            url) =>
-                                                                        Image
-                                                                            .asset(
-                                                                  "assets/images/placeholeder.png",
-                                                                  scale: 4,
+                                                  child:  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(13),
+                                                    child: CachedNetworkImage(
+                                                      fit: BoxFit.cover,
+                                                                  imageUrl:
+                                                                    widget.imageurl,
+                                                                  placeholder:
+                                                                      (context,
+                                                                              url) =>
+                                                                          Image
+                                                                              .asset(
+                                                                    "assets/images/placeholeder.png",
+                                                                    scale: 4,
+                                                                  ),
+                                                                  errorWidget: (context,
+                                                                          url,
+                                                                          error) =>
+                                                                      Icon(Icons
+                                                                          .error),
                                                                 ),
-                                                                errorWidget: (context,
-                                                                        url,
-                                                                        error) =>
-                                                                    Icon(Icons
-                                                                        .error),
-                                                              ),
+                                                  ),
                                                 ),
                                                 // : Image.network(widget.imageurl),
                                                 Expanded(
                                                   child: Row(
                                                     children: [
                                                       Expanded(
-                                                          flex: 8,
+                                                          flex: 7,
                                                           child: Text(
                                                             widget.title,
                                                             style:
                                                                 TextStyleConst
                                                                     .h24mstylew,
+                                                                    maxLines: 1,
                                                           )),
                                                       Expanded(
                                                         flex: 2,
@@ -203,6 +208,7 @@ class _FoodMenuDetailsState extends State<FoodMenuDetails> {
                                                           widget.price+" KD",
                                                           style: TextStyleConst
                                                               .h24mstylew,
+                                                              maxLines: 1,
                                                         ),
                                                       )
                                                     ],
@@ -213,6 +219,7 @@ class _FoodMenuDetailsState extends State<FoodMenuDetails> {
                                                     widget.description,
                                                     style: TextStyleConst
                                                         .h20bstylew,
+                                                        maxLines: 3,
                                                   ),
                                                 )
                                               ],

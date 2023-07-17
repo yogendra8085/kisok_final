@@ -194,6 +194,7 @@ class _FoodMenuItmesState extends State<FoodMenuItmes> {
                                                                   //   fit: BoxFit.cover,
                                                                   // ),
                                                                   CachedNetworkImage(
+                                                                    fit: BoxFit.cover,
                                                                 imageUrl:
                                                                    "https://cdn.requeue.net/media/media/"+"${foodMenuItemsModel.data?[index].image}",
                                                                 placeholder:

@@ -21,32 +21,23 @@ Future<void> main() async {
   } else {
     initialLocale = Locale('en', 'US');
   }
-   runApp( MyApp(initialLocale: initialLocale));
+   runApp( MyApp(initialLocale: initialLocale,prefs: prefs,));
 }
 
 class MyApp extends StatefulWidget {
  final Locale initialLocale;
+ SharedPreferences prefs;
   
-  MyApp({required this.initialLocale});
+  MyApp({required this.initialLocale,required this.prefs});
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
-  SharedPreferences? sharedPreferences;
-  // final prefs = await SharedPreferences.getInstance();
-  getdata() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    setState(() {});
-  }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    getdata();
-    super.initState();
-  }
+ 
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +48,15 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: sharedPreferences?.getString("userToken").toString() != "null"
+      home: widget.prefs?.getString("userToken").toString() != "null"
           ? HomeBasic()
           : LoginScreen(),
+             builder: (context, child) {
+            return MediaQuery(
+              child: child!,
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            );
+          },
     );
   }
 }
